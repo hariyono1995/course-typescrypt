@@ -63,6 +63,14 @@ class Admin extends Person {
     super(name, age);
     this.phone = phone;
   }
+
+  //  static method
+  static getSayHi: string = "Hii,, World!";
+  static getNameRole() {
+    return "Admin";
+  }
+  //  =======
+
   getRole(): { write: boolean; read: boolean } {
     return {
       write: this.write,
@@ -86,3 +94,7 @@ console.log(admin.phone);
 
 admin.email = "admin@gmail.com";
 console.log(admin.email);
+
+//  static method langsung nempel di class tanpa perlu instansiasi seperti line 90
+console.log(Admin.getNameRole());
+console.log(Admin.getSayHi);

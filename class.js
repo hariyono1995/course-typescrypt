@@ -68,6 +68,10 @@ var Admin = /** @class */ (function (_super) {
         _this.phone = phone;
         return _this;
     }
+    Admin.getNameRole = function () {
+        return "Admin";
+    };
+    //  =======
     Admin.prototype.getRole = function () {
         return {
             write: this.write,
@@ -84,6 +88,8 @@ var Admin = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    //  static method
+    Admin.getSayHi = "Hii,, World!";
     return Admin;
 }(Person));
 var admin = new Admin("Jhon", 28, "088296798");
@@ -91,3 +97,6 @@ console.log(admin.getName());
 console.log(admin.phone);
 admin.email = "admin@gmail.com";
 console.log(admin.email);
+//  static method langsung nempel di class tanpa perlu instansiasi seperti line 90
+console.log(Admin.getNameRole());
+console.log(Admin.getSayHi);
