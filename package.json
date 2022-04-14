@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": " nodemon class.js",
-    "ts": "tsc class.ts -w"
+    "ts": "tsc --target es5 class.ts -w"
   },
   "repository": {
     "type": "git",
