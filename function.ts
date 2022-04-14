@@ -4,7 +4,7 @@ export {};
 
 //  string
 function getName(): string {
-  return "Jhon Dow";
+  return "Jhon";
   // return 888; //error harus string
 }
 
@@ -43,3 +43,19 @@ type Tambah = (val1: number, val2: number) => number;
 const Add: Tambah = (val1: number, val2: number): number => val1 + val2;
 
 console.log(Add(2, 3));
+
+//  default parameters/argument
+const fullName = (first: string, last: string = "Doe"): string => {
+  return first + " " + last;
+};
+
+console.log(fullName(getName(), "jaw"));
+
+//  opsional parameter
+//  opsional parameter
+
+const getUmur = (val1: number, val2?: number): string => {
+  return val1 + "" + val2;
+};
+
+console.log(getUmur(8, 8));

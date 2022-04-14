@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": " nodemon function.js",
-    "ts": "tsc function.ts -w"
+    "dev": " nodemon class.js",
+    "ts": "tsc class.ts -w"
   },
   "repository": {
     "type": "git",

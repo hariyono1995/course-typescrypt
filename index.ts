@@ -50,3 +50,10 @@ enum Color {
 }
 
 console.log(Color);
+
+//  union type -> bisa menentukan variabel dengan type data yang lebih dari 1
+
+let phone: string | number;
+
+phone = "08588989899";
+phone = 6285977220;
