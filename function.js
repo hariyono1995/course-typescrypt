@@ -21,5 +21,6 @@ printName();
 function multiple(num1, num2) {
     return num1 * num2;
 }
-console.log(multiple(2, 3));
-//  function as type / func sebagai type data
+var age = 80;
+var Add = function (val1, val2) { return val1 + val2; };
+console.log(Add(2, 3));

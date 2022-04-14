@@ -31,6 +31,15 @@ function multiple(num1: number, num2: number): number {
   return num1 * num2;
 }
 
-console.log(multiple(2, 3));
+// console.log(multiple(2, 3));
 
 //  function as type / func sebagai type data
+type Age = number;
+
+let age: Age = 80;
+
+type Tambah = (val1: number, val2: number) => number;
+
+const Add: Tambah = (val1: number, val2: number): number => val1 + val2;
+
+console.log(Add(2, 3));
