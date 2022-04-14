@@ -31,3 +31,22 @@ let address: any[] = ["jln. abc no.", 8, true];
 
 let biodata: [string, number] = ["John", 27];
 // biodata= ["John", 27, "John"];  // error melebihi batas jumlah item yang telah di tentukan
+
+//  enum -> type data array yang berisi constanta
+// enum numerik
+
+enum Month {
+  JAN = 1,
+  FEB = 8,
+  MAR,
+  APR,
+}
+console.log(Month.APR);
+
+//  enum string
+enum Color {
+  RED = "merah",
+  GREEN = "hijau",
+}
+
+console.log(Color);
