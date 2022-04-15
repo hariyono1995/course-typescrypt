@@ -1,4 +1,4 @@
-class Hewan {
+class Animal1 {
   constructor() {
     console.log(
       "Constructor ini akan selalu di jalan kan terlebih dahulu ketika intance di buat"
@@ -6,6 +6,6 @@ class Hewan {
   }
 }
 
-const hewan = new Hewan();
+const hewan = new Animal1();
 
 console.log(hewan);
