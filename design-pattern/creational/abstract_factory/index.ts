@@ -9,12 +9,12 @@ enum ComputerType {
 }
 
 abstract class Computer {
-  protected type: ComputerType;
-  protected monitor: string;
+  protected _type: ComputerType;
+  protected _monitor: string;
 
   constructor(type: ComputerType, monitor: string) {
-    this.type = type;
-    this.monitor = monitor;
+    this._type = type;
+    this._monitor = monitor;
   }
 
   abstract getModel(): string;
@@ -25,7 +25,7 @@ class PC extends Computer {
     super(ComputerType.PC, monitor);
   }
   getModel(): string {
-    return `${this.type} with ${this.monitor}`;
+    return `${this._type} with ${this._monitor}`;
   }
 }
 
@@ -35,7 +35,7 @@ class LAPTOP extends Computer {
   }
 
   getModel(): string {
-    return `${this.type} with ${this.monitor}`;
+    return `${this._type} with ${this._monitor}`;
   }
 }
 
@@ -87,6 +87,13 @@ class ComputerFactory {
 }
 
 const pcled = ComputerFactory.buildComputer(ComputerType.PC, MonitorType.LED);
+const laptopips = ComputerFactory.buildComputer(
+  ComputerType.LAPTOP,
+  MonitorType.IPS
+);
+
+console.log(laptopips);
+console.log(laptopips.getModel());
 
 console.log(pcled);
 console.log(pcled.getModel());
