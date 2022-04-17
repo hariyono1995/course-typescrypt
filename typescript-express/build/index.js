@@ -28,7 +28,7 @@ class App {
         this._app.get("/", (req, res) => {
             res.send("hii, dunia ini adalah pertama saya belajar express dengan typescript");
         });
-        this._app.use("/users", UserRoutes_1.default);
+        this._app.use("/api/v1/users", UserRoutes_1.default);
     }
 }
 const port = 8000;

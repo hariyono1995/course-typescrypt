@@ -32,7 +32,7 @@ class App {
       );
     });
 
-    this._app.use("/users", userRoute);
+    this._app.use("/api/v1/users", userRoute);
   }
 }
 

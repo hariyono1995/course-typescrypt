@@ -1,6 +1,9 @@
 import { Router, Request, Response } from "express";
 
-import { IRoute } from "./RouteInterface";
+import IRoute from "./RouteInterface";
+
+//  Controller
+import UserController from "../controllers/UserController";
 
 class UserRoute implements IRoute {
   public _router: Router;
@@ -11,13 +14,15 @@ class UserRoute implements IRoute {
   }
 
   public routes(): void {
-    this._router.route("/").get((req: Request, res: Response) => {
-      res.send("ini adalah router user");
-    });
-
-    this._router.route("/").post((req: Request, res: Response) => {
-      res.send(req.body);
-    });
+    this._router
+      .route("/")
+      .get(UserController.index)
+      .post(UserController.create);
+    this._router
+      .route("/:id")
+      .get(UserController.show)
+      .put(UserController.update)
+      .delete(UserController.delete);
   }
 }
 

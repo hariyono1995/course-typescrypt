@@ -1,3 +1,5 @@
-export interface IRoute {
+interface IRoute {
   routes(): void;
 }
+
+export default IRoute;
