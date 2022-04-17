@@ -7,10 +7,7 @@ class UserRoute {
         this.routes();
     }
     routes() {
-        // this._router.route("/").get((req: Request, res: Response) => {
-        //   res.send("ini adalah router user");
-        // });
-        this._router.get("/", (req, res) => {
+        this._router.route("/").get((req, res) => {
             res.send("ini adalah router user");
         });
         this._router.route("/").post((req, res) => {

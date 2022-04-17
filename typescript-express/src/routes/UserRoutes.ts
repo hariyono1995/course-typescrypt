@@ -11,12 +11,10 @@ class UserRoute implements IRoute {
   }
 
   public routes(): void {
-    // this._router.route("/").get((req: Request, res: Response) => {
-    //   res.send("ini adalah router user");
-    // });
-    this._router.get("/", (req: Request, res: Response) => {
+    this._router.route("/").get((req: Request, res: Response) => {
       res.send("ini adalah router user");
     });
+
     this._router.route("/").post((req: Request, res: Response) => {
       res.send(req.body);
     });
