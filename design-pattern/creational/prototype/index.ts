@@ -12,7 +12,7 @@ namespace Prototype {
       this._email = email;
     }
 
-    getClone(): this {
+    public getClone(): this {
       return Object.assign({}, this);
     }
   }
