@@ -3,14 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
+const BaseRoute_1 = __importDefault(require("./BaseRoute"));
 //  Controller
 const UserController_1 = __importDefault(require("../controllers/UserController"));
-class UserRoute {
-    constructor() {
-        this._router = (0, express_1.Router)();
-        this.routes();
-    }
+class UserRoute extends BaseRoute_1.default {
     routes() {
         this._router
             .route("/")

@@ -11,6 +11,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 //  Router
 const UserRoutes_1 = __importDefault(require("./routes/UserRoutes"));
+const AuthRoutes_1 = __importDefault(require("./routes/AuthRoutes"));
 class App {
     constructor() {
         this._app = (0, express_1.default)();
@@ -29,6 +30,7 @@ class App {
             res.send("hii, dunia ini adalah pertama saya belajar express dengan typescript");
         });
         this._app.use("/api/v1/users", UserRoutes_1.default);
+        this._app.use("/api/v1/auth", AuthRoutes_1.default);
     }
 }
 const port = 8000;
