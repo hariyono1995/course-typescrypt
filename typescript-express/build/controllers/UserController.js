@@ -10,6 +10,7 @@ const data = [
 ];
 class UserController {
     index(req, res) {
+        console.log("masuk ke controller user index setelah middleware");
         return res.send(data);
     }
     show(req, res) {

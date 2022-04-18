@@ -13,6 +13,7 @@ const data: any[] = [
 
 class UserController implements IController {
   public index(req: Request, res: Response): Response {
+    console.log("masuk ke controller user index setelah middleware");
     return res.send(data);
   }
 
