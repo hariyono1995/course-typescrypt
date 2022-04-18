@@ -44,6 +44,10 @@ class AuthController {
 
     return res.send("auth failed");
   };
+
+  public profile = (req: Request, res: Response): Response => {
+    return res.send("ini adalah route profile setelah ada authentication");
+  };
 }
 
 export default new AuthController();

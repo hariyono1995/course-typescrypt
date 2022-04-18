@@ -43,6 +43,9 @@ class AuthController {
             }
             return res.send("auth failed");
         });
+        this.profile = (req, res) => {
+            return res.send("ini adalah route profile setelah ada authentication");
+        };
     }
 }
 exports.default = new AuthController();
