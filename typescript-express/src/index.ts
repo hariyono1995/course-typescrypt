@@ -4,6 +4,7 @@ import morgan from "morgan";
 import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
+import { config as dotenv } from "dotenv";
 
 //  Router
 import userRoute from "./routes/UserRoutes";
@@ -24,6 +25,7 @@ class App {
     this._app.use(compression());
     this._app.use(helmet());
     this._app.use(cors());
+    dotenv();
   }
 
   protected routes(): void {
@@ -38,7 +40,7 @@ class App {
   }
 }
 
-const port: number = 8000;
+const port: string | number = process.env.PORT || 8000;
 const app = new App()._app;
 
 app.listen(port, () => {
