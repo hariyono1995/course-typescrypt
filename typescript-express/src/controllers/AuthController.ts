@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 
 const db = require("../db/models");
 
-import PasswordHash from "../utils/PasswordHash";
+import Authentication from "../utils/Authentication";
 
 class AuthController {
   public register = async (req: Request, res: Response): Promise<Response> => {
     const { username, password } = req.body;
 
-    const hashedPassword: string = await PasswordHash.passwordHash(password);
+    const hashedPassword: string = await Authentication.passwordHash(password);
 
     const createdUser = await db.user.create({
       username,
@@ -20,9 +20,30 @@ class AuthController {
       user: { username: createdUser.username },
     });
   };
-  public login(req: Request, res: Response): Response {
-    return res.send("login");
-  }
+  public login = async (req: Request, res: Response): Promise<Response> => {
+    const { username, password } = req.body;
+
+    const user = await db.user.findOne({ where: { username: username } });
+
+    if (user) {
+      const isCorrectPassword = await Authentication.passwordCompare(
+        password,
+        user.password
+      );
+
+      if (isCorrectPassword) {
+        const token = await Authentication.tokenGenerator(
+          user.id,
+          user.username
+        );
+        return res.send({ token: token });
+      } else {
+        return res.send("password incorrect");
+      }
+    }
+
+    return res.send("auth failed");
+  };
 }
 
 export default new AuthController();
