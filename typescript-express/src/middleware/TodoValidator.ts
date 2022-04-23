@@ -3,8 +3,7 @@ import { check, validationResult } from "express-validator";
 import { StatusCodes } from "http-status-codes";
 
 const validate = [
-  check("username").isString(),
-  check("password").isLength({ min: 5 }),
+  check("description").isString(),
 
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);

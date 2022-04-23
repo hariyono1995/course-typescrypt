@@ -14,13 +14,11 @@ export const auth = (req: Request, res: Response, next: NextFunction): any => {
   const token: string = accessToken;
 
   try {
-    const credential: string | object = jwt.verify(
-      JSON.parse(token),
-      secretKey
-    );
+    const credential: string | object = jwt.verify(token, secretKey);
 
     if (credential) {
-      next();
+      req.app.locals.credential = credential;
+      return next();
     } else {
       return res.status(StatusCodes.BAD_REQUEST).send("invalid token");
     }

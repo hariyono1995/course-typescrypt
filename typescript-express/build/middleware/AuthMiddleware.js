@@ -14,9 +14,10 @@ const auth = (req, res, next) => {
     const secretKey = process.env.SECRET_KEY || "secret";
     const token = accessToken;
     try {
-        const credential = jsonwebtoken_1.default.verify(JSON.parse(token), secretKey);
+        const credential = jsonwebtoken_1.default.verify(token, secretKey);
         if (credential) {
-            next();
+            req.app.locals.credential = credential;
+            return next();
         }
         else {
             return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).send("invalid token");
