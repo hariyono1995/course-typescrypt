@@ -71,7 +71,7 @@ class TodoController implements IController {
       where: { id: id, user_id: user_id },
     });
 
-    return res.send("todo " + id + " deleted");
+    return res.send({ msg: `todo id: ${id} deleted.`, data: "" });
   };
 }
 
