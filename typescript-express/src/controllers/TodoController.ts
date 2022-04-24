@@ -1,18 +1,12 @@
 import { Request, Response } from "express";
-
 import IController from "./ControllerInterface";
-
-const db = require("../db/models");
+import TodoService from "../services/TodoServices";
 
 class TodoController implements IController {
   public index = async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.app.locals.credential;
+    const service: TodoService = new TodoService(req);
 
-    const todos = await db.todo.findAll({
-      where: { user_id: id },
-      attributes: ["id", "description"],
-    });
-
+    const todos = await service.getAll();
     return res.send({
       msg: "",
       length: todos.length,
@@ -21,57 +15,37 @@ class TodoController implements IController {
   };
 
   public show = async (req: Request, res: Response): Promise<Response> => {
-    const { id: user_id } = req.app.locals.credential;
-    const id = parseInt(req.params.id);
+    const service: TodoService = new TodoService(req);
 
-    const todo = await db.todo.findOne({
-      where: { id: id, user_id: user_id },
-    });
+    const todo = await service.getOne();
 
     return res.send({ msg: "", data: todo });
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.app.locals.credential;
+    const service: TodoService = new TodoService(req);
 
-    const { description } = req.body;
-
-    const todo = await db.todo.create({
-      user_id: id,
-      description: description,
-    });
+    const todo = await service.store();
 
     return res.send({ msg: "todo created successfully", data: todo });
   };
 
   public update = async (req: Request, res: Response): Promise<Response> => {
-    const { id: user_id } = req.app.locals.credential;
-    const id = parseInt(req.params.id);
-    const { description } = req.body;
-
-    await db.todo.update(
-      { description: description },
-      { where: { id: id, user_id: user_id } }
-    );
-
-    return res.send({ msg: "todo updated", data: "" });
+    const service: TodoService = new TodoService(req);
+    const todo = await service.update();
+    return res.send({ msg: "todo updated", data: todo });
   };
 
   public delete = async (req: Request, res: Response): Promise<Response> => {
-    const { id: user_id } = req.app.locals.credential;
-    const id = parseInt(req.params.id);
+    const service: TodoService = new TodoService(req);
 
-    const isExixt = await db.todo.findOne({ where: { id: id } });
+    const todo = await service.delete(req, res);
 
-    if (!isExixt) {
-      return res.send({ msg: `todo id: ${id} not founds` });
+    if (todo === 1) {
+      return res.send({ msg: "todo deleted" });
+    } else {
+      return res.send({ msg: "todo not found" });
     }
-
-    await db.todo.destroy({
-      where: { id: id, user_id: user_id },
-    });
-
-    return res.send({ msg: `todo id: ${id} deleted.`, data: "" });
   };
 }
 
